@@ -224,3 +224,30 @@
 .empire-deck{height:300px}
 .statgrid{gap:6px}
 }
+
+/* Tablet-specific side-by-side decision workspace. Desktop remains unchanged. */
+.tablet-decision-layout{display:block}
+.tablet-result-panel{display:none}
+@media (min-width:741px) and (max-width:1366px){
+.tablet-decision-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(195px,27%);gap:12px;align-items:stretch;margin-top:5px}
+.tablet-decision-main{min-width:0}
+.tablet-result-panel{display:flex;flex-direction:column;min-width:0;background:linear-gradient(155deg,#222b42,#141b2b);border:1px solid #4c5273;border-radius:14px;padding:14px;overflow:hidden}
+.tablet-result-panel h3{font-family:'Space Grotesk';font-size:17px;margin:12px 0 8px;overflow-wrap:anywhere}
+.tablet-result-panel>strong{font-size:16px;margin-bottom:10px}
+.tablet-result-panel p{font-size:11px;color:#bbc5d7;line-height:1.5;overflow-wrap:anywhere}
+.tablet-result-panel>small{font-size:10px;color:#c9b7e7;line-height:1.4}
+.tablet-result-changes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin:8px 0}
+.tablet-result-changes>div{display:flex;flex-direction:column;gap:4px;background:#151e30;border:1px solid #35415b;border-radius:8px;padding:8px 6px;min-width:0}
+.tablet-result-changes span{font-size:9px;color:#a4b3c8}
+.tablet-result-changes b{font-size:12px;overflow-wrap:anywhere}
+.game-layout .last-card-strip{display:none}
+.tablet-decision-main .empire-deck{height:clamp(215px,32dvh,290px)}
+.tablet-decision-main .empire-float-card{width:clamp(145px,17vw,175px)}
+.tablet-decision-main .empire-deck-detail{align-items:flex-start}
+.tablet-decision-main .empire-deck-detail .primary{font-size:11px;padding:10px}
+}
+@media (min-width:741px) and (max-width:1100px) and (orientation:portrait){
+.tablet-decision-layout{grid-template-columns:minmax(0,1fr) 205px;gap:8px}
+.tablet-decision-main .empire-deck{height:290px}
+}
+@media (max-width:740px){.tablet-result-panel{display:none}}
