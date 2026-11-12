@@ -317,3 +317,22 @@ body:has(.tablet-decision-layout){overflow:hidden}
 .app:has(.tablet-decision-layout) .empire-float-card .float-description{display:none}
 .app:has(.tablet-decision-layout) .tablet-result-panel p{display:none}
 }
+
+/* Give selected-decision text its own full-width row above the fixed play control. */
+.empire-deck-detail{display:block;width:100%;min-width:0}
+.empire-deck-detail>div{display:block;width:100%;max-width:none;min-width:0}
+.empire-deck-detail>div p{display:block;width:100%;max-width:none;white-space:normal;overflow-wrap:anywhere;line-height:1.55}
+@media(max-width:1366px){
+.empire-deck-detail{padding:9px 0 calc(84px + env(safe-area-inset-bottom))!important}
+.empire-deck-detail>div{padding:0 3px}
+.empire-floating-play{bottom:calc(10px + env(safe-area-inset-bottom))}
+}
+@media(min-width:741px) and (max-width:1366px){
+.app:has(.tablet-decision-layout) .empire-deck-detail{padding:5px 0 62px!important}
+.app:has(.tablet-decision-layout) .empire-deck-detail>div p{font-size:11px;line-height:1.35}
+}
+@media(max-width:740px){
+.empire-deck-detail{padding:9px 4px calc(88px + env(safe-area-inset-bottom))!important}
+.empire-deck-detail>div strong{margin:4px 0}
+.empire-deck-detail>div p{font-size:11px;line-height:1.55}
+}
