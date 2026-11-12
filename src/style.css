@@ -560,3 +560,16 @@ html:has(.intro),body:has(.intro),#root:has(.intro){height:100%;min-height:0;ove
 .app:has(.intro) .intro h1{font-size:clamp(42px,7.4dvh,64px)}
 .app:has(.intro) .start-panel{padding:9px 13px}
 }
+
+/* Desktop fullscreen landing: hard viewport lock with predictable content layout. */
+@media(min-width:1367px){
+html:has(.app .intro),body:has(.app .intro),#root:has(.app .intro){height:100dvh!important;max-height:100dvh!important;overflow:hidden!important}
+.app:has(.intro){position:relative;height:100dvh!important;max-height:100dvh!important;min-height:0!important;display:grid!important;grid-template-rows:56px minmax(0,1fr);overflow:hidden!important}
+.app:has(.intro)>.topbar{grid-row:1;height:56px!important;min-height:0!important}
+.app:has(.intro)>main.container{grid-row:2;height:100%!important;max-height:100%!important;min-height:0!important;margin:0 auto!important;padding:8px 20px!important;overflow:hidden!important;display:grid!important;place-items:center}
+.app:has(.intro)>footer{display:none!important}
+.app:has(.intro) .intro{width:min(100%,780px);height:auto!important;max-height:100%!important;min-height:0!important;margin:0!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:clamp(6px,1vh,10px);overflow:hidden}
+.app:has(.intro) .intro h1{font-size:clamp(44px,8vh,76px)!important;line-height:.94!important;max-width:100%;white-space:normal;overflow:visible}
+.app:has(.intro) .intro-cards{height:clamp(38px,7vh,62px)!important;max-height:62px!important;overflow:hidden!important}
+.app:has(.intro) .start-panel{max-width:100%;padding:10px 15px!important}
+}
