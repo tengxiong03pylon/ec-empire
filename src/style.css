@@ -462,3 +462,57 @@ body:has(.tablet-decision-layout){overflow:hidden}
 .app:has(.tablet-decision-layout) .empire-float-card{height:140px;margin-top:-70px}
 .app:has(.tablet-decision-layout) .empire-float-card .float-description{display:none}
 }
+
+/* Landing screen: adaptive no-scroll viewport on desktop, tablet, and phone. */
+.app:has(.intro){height:100dvh;min-height:0;overflow:hidden}
+.app:has(.intro) .container{height:calc(100dvh - 75px);min-height:0;padding:10px 18px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.app:has(.intro) .intro{margin:0 auto;width:min(100%,840px);max-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(6px,1.5dvh,16px)}
+.app:has(.intro) .intro h1{font-size:clamp(40px,min(8vw,11dvh),92px);line-height:.92;margin:0;letter-spacing:-.055em}
+.app:has(.intro) .intro .lede{font-size:clamp(11px,1.45dvh,15px);line-height:1.4;max-width:570px}
+.app:has(.intro) .intro-stats{margin:0;width:min(100%,520px);gap:6px}
+.app:has(.intro) .intro-stats b{font-size:clamp(17px,3dvh,29px)}
+.app:has(.intro) .intro-stats span{font-size:9px}
+.app:has(.intro) .start-panel{width:min(100%,580px);padding:clamp(9px,1.7dvh,18px)}
+.app:has(.intro) .start-panel label{margin-bottom:5px}
+.app:has(.intro) .start-line input{padding:10px}
+.app:has(.intro) .start-panel .primary{padding:10px 13px}
+.app:has(.intro) .start-panel .hint{margin-top:6px;font-size:10px;line-height:1.35}
+.app:has(.intro) .intro-cards{margin:0;height:clamp(58px,12dvh,125px)}
+.app:has(.intro) .intro-cards>span{width:clamp(44px,8dvh,77px);height:clamp(52px,10dvh,100px);font-size:clamp(20px,4dvh,34px)}
+.app:has(.intro) .intro-cards small{font-size:7px;margin-top:5px}
+@media(min-width:741px) and (max-width:1366px){
+.app:has(.intro) .topbar{height:52px}
+.app:has(.intro) .container{height:calc(100dvh - 52px);padding:7px 12px}
+.app:has(.intro) .intro{gap:clamp(5px,1.2dvh,11px)}
+.app:has(.intro) .intro h1{font-size:clamp(40px,min(8vw,10dvh),78px)}
+}
+@media(max-width:740px){
+.app:has(.intro) .topbar{height:44px}
+.app:has(.intro) .barinner{height:44px}
+.app:has(.intro) .container{height:calc(100dvh - 44px);padding:5px 12px;align-items:center}
+.app:has(.intro) .intro{gap:clamp(4px,1dvh,9px)}
+.app:has(.intro) .intro .eyebrow{font-size:8px;letter-spacing:1px}
+.app:has(.intro) .intro h1{font-size:clamp(35px,8dvh,67px);letter-spacing:-.05em}
+.app:has(.intro) .intro .lede{font-size:11px;line-height:1.3}
+.app:has(.intro) .intro-stats b{font-size:19px}
+.app:has(.intro) .intro-stats span{font-size:7px;letter-spacing:.5px}
+.app:has(.intro) .start-panel{padding:10px}
+.app:has(.intro) .start-panel label{font-size:9px}
+.app:has(.intro) .start-line{flex-direction:row;gap:6px}
+.app:has(.intro) .start-line input{width:auto;min-width:0;flex:1;padding:9px;font-size:12px}
+.app:has(.intro) .start-line button{width:auto;flex-shrink:0;padding:8px;font-size:10px}
+.app:has(.intro) .start-panel select{min-width:0!important;max-width:100%;flex:1;padding:8px!important;font-size:11px}
+.app:has(.intro) .start-panel .primary{padding:8px 9px;font-size:10px}
+.app:has(.intro) .intro-cards{height:clamp(40px,8dvh,70px);margin:0}
+.app:has(.intro) .intro-cards>span{width:42px;height:52px;font-size:19px}
+.app:has(.intro) .intro-cards small{font-size:5px;margin-top:3px}
+}
+@media(max-height:650px){
+.app:has(.intro) .intro{gap:4px}
+.app:has(.intro) .intro h1{font-size:clamp(31px,7dvh,54px)}
+.app:has(.intro) .intro .lede{font-size:10px;line-height:1.2}
+.app:has(.intro) .intro-stats b{font-size:16px}
+.app:has(.intro) .intro-cards{display:none}
+.app:has(.intro) .start-panel{padding:8px}
+.app:has(.intro) .start-panel .hint{font-size:9px;margin-top:4px}
+}
