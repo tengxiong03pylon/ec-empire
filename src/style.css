@@ -196,3 +196,31 @@
 @media(min-width:741px) and (max-width:1366px){.empire-deck{height:clamp(200px,30dvh,270px)}.empire-float-card{width:170px;height:230px;margin-top:-115px}.empire-float-card .float-symbol{margin:8px 0;font-size:30px}.empire-float-card strong{font-size:17px}.empire-deck-detail{padding:7px 0}}
 @media(max-width:740px){.empire-deck{height:230px}.empire-float-card{width:152px;height:208px;margin-top:-104px;padding:12px}.empire-float-card .float-symbol{font-size:28px;margin:8px 0}.empire-float-card strong{font-size:16px}.empire-float-card .float-description{font-size:10px}.empire-float-card .float-gain{font-size:10px}.empire-deck-tabs button{font-size:9px;padding:8px 2px}.empire-deck-detail{gap:8px}.empire-deck-detail .primary{padding:10px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){.empire-float-card{transition:none}}
+
+/* Tablet landscape: prioritize full dashboard + interactive deck in one viewport. */
+@media (min-width:741px) and (max-width:1366px) and (orientation:landscape){
+.game-layout{display:block;max-width:1100px;margin:auto}
+.game-layout>.side-column{display:none}
+.game-layout>.main-column{min-width:0}
+.game-heading{margin-bottom:3px}.game-title{font-size:20px}
+.career-timeline{margin-bottom:4px!important;padding:5px 9px!important}
+.path-banner{padding:6px 10px;margin-bottom:5px}.path-text h2{font-size:14px}
+.statgrid{grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}
+.statgrid>.metric{grid-column:span 1;padding:7px 6px}
+.statgrid .metric strong{font-size:clamp(12px,1.5vw,19px);white-space:nowrap}
+.statgrid .metric small{display:none}
+.statgrid .metric-top span{font-size:8px;letter-spacing:.2px}
+.skill-risk-bar{margin:5px 0!important;padding:6px 9px!important}
+.last-card-strip{margin:5px 0!important;padding:6px 9px!important}
+.section-title{margin:5px 0 0}.section-title h2{font-size:17px}
+.empire-deck{height:clamp(180px,31dvh,265px);max-width:850px}
+.empire-float-card{width:clamp(150px,18vw,190px);height:clamp(170px,29dvh,235px);margin-top:calc(clamp(170px,29dvh,235px)/-2)}
+.empire-deck-tabs{margin-bottom:5px}
+.empire-deck-detail{padding:6px 0}
+.hand-advice{display:none}
+}
+@media (min-width:741px) and (max-width:1100px) and (orientation:portrait){
+.game-layout{display:block}.game-layout>.side-column{display:none}
+.empire-deck{height:300px}
+.statgrid{gap:6px}
+}
