@@ -107,3 +107,16 @@
 .skill-fill{background:#50c99d}.risk-fill{background:#f2a35e}
 .skill-risk-item small{font-size:9px;color:#b6bfd0}
 @media(max-width:740px){.skill-risk-bar{gap:5px;margin:4px 0}.skill-risk-item{padding:5px}.skill-risk-head,.skill-risk-head b{font-size:8px}.skill-risk-track{height:4px;margin:4px 0 2px}.skill-risk-item small{font-size:8px}}
+
+/* Every choice exposes both skill/risk movement and its economic tradeoff. */
+.card-impact{width:100%;gap:4px}
+.card-impact-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:3px}
+.card-impact-row>span{font-size:10px;font-weight:900;border-radius:4px;padding:3px 5px;background:#293244}
+.card-impact-detail{display:flex;flex-direction:column;gap:2px;font-size:9px;font-weight:700;line-height:1.25}
+.impact-good{color:#74e2ae!important}.impact-bad{color:#ffae91!important}.impact-neutral{color:#c7cbd5!important}
+@media(max-width:740px){
+ .card-impact{gap:2px}
+ .card-impact-row>span{font-size:8px;padding:2px 3px}
+ .card-impact-detail{font-size:7px;line-height:1.18}
+ .decision-card{height:clamp(156px,23dvh,200px)}
+}
