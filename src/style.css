@@ -386,3 +386,7 @@ body:has(.tablet-decision-layout){overflow:hidden}
 .app:has(.tablet-decision-layout) .skill-risk-item small{display:none}
 .app:has(.tablet-decision-layout) .career-timeline{display:none}
 }
+
+/* Permit horizontal card swipes without introducing page scroll. */
+.empire-deck{touch-action:pan-y;overscroll-behavior-x:contain;-webkit-user-select:none;user-select:none}
+.empire-float-card{-webkit-tap-highlight-color:transparent}
