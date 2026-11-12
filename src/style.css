@@ -174,3 +174,25 @@
 .floating-modal-actions{flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce){.floating-card-modal{animation:none}.floating-deck .decision-card{transition:none}}
+
+/* EC Empire interactive stacked 3D deck, matching approved prototype */
+.empire-deck{position:relative;height:clamp(225px,33dvh,320px);perspective:950px;overflow:hidden;isolation:isolate;display:block;margin:0 auto;width:100%;max-width:800px}
+.empire-float-card{position:absolute;left:50%;top:50%;margin-top:-125px;width:180px;height:250px;border:1px solid #73829a;border-radius:17px;padding:16px;text-align:left;display:flex;flex-direction:column;cursor:pointer;color:#fff;background:linear-gradient(145deg,#273852,#111b2d);box-shadow:0 15px 32px #0009;transform-origin:center;transition:transform .45s ease,opacity .45s ease,filter .45s ease,border-color .3s}
+.empire-float-card.is-focused{border:2px solid #75e4ff;background:linear-gradient(145deg,#35527c,#17263e);box-shadow:0 0 30px #3c9ed555,0 24px 45px #000a}
+.empire-float-card:focus-visible{outline:3px solid #7ee4c5;outline-offset:3px}
+.empire-float-card .float-kind{font-size:10px;letter-spacing:1.7px;color:#b7c9df;font-weight:800}
+.empire-float-card .float-symbol{font-size:36px;margin:13px 0;color:#c6b2ff}
+.empire-float-card strong{font-size:19px;font-weight:800;line-height:1.2}
+.empire-float-card .float-description{font-size:11px;line-height:1.4;color:#c5d0df;margin-top:10px;flex:1}
+.empire-float-card .float-gain{font-size:12px;color:#7ff0c0;font-weight:800}
+.empire-float-card.is-locked{filter:saturate(.5)}
+.empire-float-card .float-lock{font-size:9px;color:#f3aaaa;margin-top:4px;font-weight:800}
+.empire-deck-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 auto 10px;max-width:650px}
+.empire-deck-tabs button{border:1px solid #4a5c78;background:#202e44;color:#e3e9f4;border-radius:9px;padding:8px 4px;font-size:10px;font-weight:800;cursor:pointer;min-width:0}
+.empire-deck-tabs button.selected{border-color:#7ee4c5;color:#7ee4c5}
+.empire-deck-detail{border-top:1px solid #35425a;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0}
+.empire-deck-detail>div{min-width:0}.empire-deck-detail small{display:block;font-size:10px;color:#a6b6cb;letter-spacing:1px}.empire-deck-detail strong{display:block;font-size:16px;margin:4px 0}.empire-deck-detail p{color:#8ceac6;font-size:11px;line-height:1.5;margin:0}
+.empire-deck-detail .primary{white-space:nowrap;flex-shrink:0}
+@media(min-width:741px) and (max-width:1366px){.empire-deck{height:clamp(200px,30dvh,270px)}.empire-float-card{width:170px;height:230px;margin-top:-115px}.empire-float-card .float-symbol{margin:8px 0;font-size:30px}.empire-float-card strong{font-size:17px}.empire-deck-detail{padding:7px 0}}
+@media(max-width:740px){.empire-deck{height:230px}.empire-float-card{width:152px;height:208px;margin-top:-104px;padding:12px}.empire-float-card .float-symbol{font-size:28px;margin:8px 0}.empire-float-card strong{font-size:16px}.empire-float-card .float-description{font-size:10px}.empire-float-card .float-gain{font-size:10px}.empire-deck-tabs button{font-size:9px;padding:8px 2px}.empire-deck-detail{gap:8px}.empire-deck-detail .primary{padding:10px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){.empire-float-card{transition:none}}
