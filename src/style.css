@@ -251,3 +251,16 @@
 .tablet-decision-main .empire-deck{height:290px}
 }
 @media (max-width:740px){.tablet-result-panel{display:none}}
+
+/* Floating action for selected decision: mobile and tablet only. */
+.empire-floating-play{display:none}
+@media(max-width:1366px){
+.empire-inline-play{display:none!important}
+.empire-floating-play{position:fixed;display:flex;align-items:center;justify-content:center;gap:8px;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:80;min-height:54px;padding:13px 19px;border:1px solid #b8a2ff;border-radius:999px;background:linear-gradient(135deg,#a98cff,#7f64e5);color:#101020;font-size:12px;font-weight:900;letter-spacing:.6px;box-shadow:0 12px 35px #000a,0 0 24px #9a7cff55;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.empire-floating-play:active:not(:disabled){transform:scale(.94)}
+.empire-floating-play:focus-visible{outline:3px solid #7ee4c5;outline-offset:4px}
+.empire-floating-play:disabled{opacity:.65;filter:grayscale(.65);cursor:not-allowed}
+.empire-deck-detail{padding-right:8px}
+}
+@media(max-width:740px){.empire-deck-detail{padding-bottom:12px}.empire-floating-play{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));min-height:50px;padding:12px 16px}}
+@media(prefers-reduced-motion:reduce){.empire-floating-play{transition:none}}
