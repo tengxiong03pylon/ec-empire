@@ -400,3 +400,65 @@ body:has(.tablet-decision-layout){overflow:hidden}
 .app:has(.tablet-decision-layout) .empire-deck-detail>div{max-height:100%;overflow:hidden}
 .app:has(.tablet-decision-layout) .empire-floating-play{bottom:calc(8px + env(safe-area-inset-bottom))}
 }
+
+/* Desktop game workspace: fit the dashboard, full floating deck and play action in one screen. */
+@media(min-width:1367px){
+body:has(.tablet-decision-layout){overflow:hidden}
+.app:has(.tablet-decision-layout){height:100dvh;min-height:0;overflow:hidden}
+.app:has(.tablet-decision-layout) .topbar{height:52px}
+.app:has(.tablet-decision-layout) .barinner{max-width:1440px;padding:0 18px}
+.app:has(.tablet-decision-layout) .container{max-width:1440px;height:calc(100dvh - 52px);min-height:0;padding:10px 18px 8px;overflow:hidden}
+.app:has(.tablet-decision-layout) .game-layout{height:100%;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:15px;overflow:hidden}
+.app:has(.tablet-decision-layout) .main-column{min-width:0;min-height:0;display:flex;flex-direction:column}
+.app:has(.tablet-decision-layout) .game-heading{margin-bottom:3px;align-items:center}
+.app:has(.tablet-decision-layout) .game-heading .eyebrow{font-size:8px}
+.app:has(.tablet-decision-layout) .game-title{font-size:21px;margin:1px 0}
+.app:has(.tablet-decision-layout) .round-box strong{font-size:18px}
+.app:has(.tablet-decision-layout) .career-timeline{margin-bottom:5px;padding:5px 9px}
+.app:has(.tablet-decision-layout) .career-timeline-label{font-size:8px}
+.app:has(.tablet-decision-layout) .career-ticks{margin:4px 0}
+.app:has(.tablet-decision-layout) .career-ticks span{height:15px;font-size:8px}
+.app:has(.tablet-decision-layout) .career-end-note{display:none}
+.app:has(.tablet-decision-layout) .path-banner{padding:7px 10px;gap:10px;margin-bottom:6px}
+.app:has(.tablet-decision-layout) .path-emblem{width:34px;height:34px;flex-basis:34px;font-size:22px}
+.app:has(.tablet-decision-layout) .path-text h2{font-size:14px;margin:0}
+.app:has(.tablet-decision-layout) .path-text p{font-size:10px;margin:2px 0 0}
+.app:has(.tablet-decision-layout) .statgrid{gap:5px}
+.app:has(.tablet-decision-layout) .statgrid>.metric{padding:7px 9px;min-height:0}
+.app:has(.tablet-decision-layout) .metric-top span{font-size:8px}
+.app:has(.tablet-decision-layout) .metric strong{font-size:clamp(14px,1.3vw,19px);margin:4px 0 2px}
+.app:has(.tablet-decision-layout) .metric small{font-size:8px;line-height:1.15}
+.app:has(.tablet-decision-layout) .skill-risk-bar{margin:5px 0;gap:5px}
+.app:has(.tablet-decision-layout) .skill-risk-item{padding:5px 7px}
+.app:has(.tablet-decision-layout) .skill-risk-track{margin:3px 0;height:4px}
+.app:has(.tablet-decision-layout) .skill-risk-item small{font-size:8px}
+.app:has(.tablet-decision-layout) .last-card-strip{margin:4px 0;padding:5px 8px;gap:3px}
+.app:has(.tablet-decision-layout) .last-card-label{font-size:8px}
+.app:has(.tablet-decision-layout) .tablet-decision-layout{display:flex;flex:1 1 auto;min-height:0;flex-direction:column;margin-top:0}
+.app:has(.tablet-decision-layout) .tablet-decision-main{display:flex;flex:1 1 auto;flex-direction:column;min-height:0}
+.app:has(.tablet-decision-layout) .section-title{margin:4px 0 0}
+.app:has(.tablet-decision-layout) .section-title h2{font-size:17px}
+.app:has(.tablet-decision-layout) .empire-deck{flex:1 1 auto;height:auto;min-height:165px;max-height:280px;width:100%;max-width:850px}
+.app:has(.tablet-decision-layout) .empire-float-card{width:180px;height:clamp(150px,24dvh,225px);margin-top:calc(clamp(150px,24dvh,225px)/-2);padding:12px}
+.app:has(.tablet-decision-layout) .empire-float-card .float-symbol{font-size:29px;margin:8px 0}
+.app:has(.tablet-decision-layout) .empire-float-card strong{font-size:17px}
+.app:has(.tablet-decision-layout) .empire-float-card .float-description{font-size:10px;margin-top:6px}
+.app:has(.tablet-decision-layout) .empire-deck-tabs{margin-bottom:5px}
+.app:has(.tablet-decision-layout) .empire-deck-tabs button{padding:6px 3px}
+.app:has(.tablet-decision-layout) .empire-deck-detail{display:flex;align-items:center;gap:15px;padding:7px 0 9px}
+.app:has(.tablet-decision-layout) .empire-deck-detail>div{flex:1;min-width:0}
+.app:has(.tablet-decision-layout) .empire-deck-detail .empire-inline-play{display:inline-flex}
+.app:has(.tablet-decision-layout) .hand-advice{display:none}
+.app:has(.tablet-decision-layout) .side-column{min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:7px}
+.app:has(.tablet-decision-layout) .sidebar-card{margin-bottom:0}
+.app:has(.tablet-decision-layout) .sidebar-title{padding:9px 11px;font-size:9px}
+.app:has(.tablet-decision-layout) .leader-row{padding:8px 10px;min-height:0}
+.app:has(.tablet-decision-layout) .career-rank-scroll{max-height:215px}
+.app:has(.tablet-decision-layout) .sidebar-card p{font-size:10px;line-height:1.4}
+}
+@media(min-width:1367px) and (max-height:730px){
+.app:has(.tablet-decision-layout) .path-text p,.app:has(.tablet-decision-layout) .metric small,.app:has(.tablet-decision-layout) .skill-risk-item small{display:none}
+.app:has(.tablet-decision-layout) .empire-deck{min-height:125px}
+.app:has(.tablet-decision-layout) .empire-float-card{height:140px;margin-top:-70px}
+.app:has(.tablet-decision-layout) .empire-float-card .float-description{display:none}
+}
