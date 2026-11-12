@@ -15,7 +15,7 @@ export const paths:Pathway[]=[
 {id:'social',name:'Social Entrepreneur',icon:'HeartHandshake',tagline:'Profit and purpose can coexist.',description:'Solve a community problem with a sustainable business model.',cash:22000,value:0,debt:0,ownership:1,skill:3,risk:11},
 {id:'partner',name:'Operating Partner',icon:'Users',tagline:'Join a team and earn your stake.',description:'Contribute expertise and build value through partnerships.',cash:35000,value:0,debt:0,ownership:.7,skill:3,risk:11},
 {id:'investor',name:'Investor',icon:'ChartNoAxesCombined',tagline:'Allocate capital. Manage risk.',description:'Evaluate businesses, capital structure and potential returns.',cash:70000,value:0,debt:0,ownership:1,skill:2,risk:14},
-{id:'unicorn',name:'Unicorn Founder',icon:'Crown',tagline:'Master the craft. Protect your stake.',description:'A venture-backed high-growth founder with maximum entrepreneurial skill, zero starting risk, and significant investor dilution.',cash:38875,value:0,debt:0,ownership:.15,skill:40,risk:0}
+{id:'unicorn',name:'Unicorn Founder',icon:'Crown',tagline:'Master the craft. Protect your stake.',description:'A venture-backed high-growth founder with maximum entrepreneurial skill, zero starting risk, and significant investor dilution.',cash:38875,value:0,debt:0,ownership:.15,skill:100,risk:0}
 ];
 export const cards:Card[]=[
 {id:'discover',name:'Interview Customers',category:'RESEARCH',description:'Learn what customers really want before spending heavily.',lesson:'Customer discovery reduces uncertainty; a clever product without customers has little value.',cost:1200,skill:3,risk:-7,gain:2200,variance:1100},
@@ -62,8 +62,8 @@ export function playCard(game:Game,cardId:string):{game:Game;result:HistoryItem}
 else if(c.special==='repay'){const sum=Math.min(15000,g.debt,g.cash);g.cash-=sum;g.debt-=sum;message=`Repaid ${fmt(sum)} in principal.`}
 else if(c.special==='sell'){const portion=Math.min(.2,g.ownership);const payout=g.value*portion*.9;g.cash+=payout;g.ownership=Math.max(g.path.id==='unicorn'?.15:0,g.ownership-portion);message=`Sold 20 percentage points of business equity at a 10% discount; received ${fmt(payout)}.`}
 else if(c.special==='cash'){const amount=4500+nextInt(g,7500);g.cash+=amount;message=`Collected ${fmt(amount)} in consulting revenue.`}
-else{g.cash-=c.cost;const volatility=(nextUnit(g)*2-1)*c.variance;let appreciation=Math.max(0,c.gain*(1+Math.min(.92,g.skill*.023))+volatility);if(nextUnit(g)<g.risk/230){appreciation*=.27;message='Execution setback. '}g.value+=appreciation;g.debt+=c.debt||0;message+=`Business asset value changed by ${fmt(appreciation)}.`}
-g.skill=Math.min(g.path.id==='unicorn'?40:20,g.skill+c.skill);g.risk=g.path.id==='unicorn'?0:Math.max(0,Math.min(100,g.risk+c.risk));
+else{g.cash-=c.cost;const volatility=(nextUnit(g)*2-1)*c.variance;let appreciation=Math.max(0,c.gain*(1+Math.min(g.path.id==='unicorn'?2.3:.46,g.skill*.023))+volatility);if(nextUnit(g)<g.risk/230){appreciation*=.27;message='Execution setback. '}g.value+=appreciation;g.debt+=c.debt||0;message+=`Business asset value changed by ${fmt(appreciation)}.`}
+g.skill=Math.min(g.path.id==='unicorn'?100:20,g.skill+c.skill);g.risk=g.path.id==='unicorn'?0:Math.max(0,Math.min(100,g.risk+c.risk));
 let eventName='';if(g.turn%2===0){const event=events[nextInt(g,events.length)];g.cash+=event.cash;g.value=Math.max(0,g.value+event.value);g.risk=g.path.id==='unicorn'?0:Math.max(0,Math.min(100,g.risk+event.risk));eventName=`${event.name}: ${event.description} Cash ${fmt(event.cash)}, assets ${fmt(event.value)}.`}
 const interest=Math.round(g.debt*.05);g.cash-=interest;if(interest)message+=` Debt interest: ${fmt(interest)}.`;
 if(g.cash<0){const shortfall=-g.cash;g.debt+=shortfall;g.cash=0;g.risk=g.path.id==='unicorn'?0:Math.min(100,g.risk+8);message+=` Emergency borrowing: ${fmt(shortfall)}.`}
