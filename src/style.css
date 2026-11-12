@@ -35,3 +35,19 @@
 .brand{gap:9px}
 @media(max-width:740px){.brandtype small{display:block;font-size:8px}.brandtype strong{font-size:12px}.brandmark{width:32px;height:32px}.brandmark svg{width:17px;height:17px}}
 @media(max-width:380px){.brandtype{display:flex}.brandtype small{font-size:7px}.brandtype strong{font-size:11px}}
+
+/* Financial scoreboard: three columns across two rows; decision explanation sits between debt and equity. */
+.statgrid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.statgrid>.metric{grid-column:span 2}
+.decision-explainer{background:#1d2336;border-color:#514477}
+.decision-explainer strong{font-size:17px;white-space:normal}
+.decision-explainer small{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:740px){
+ .statgrid{grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+ .statgrid>.metric,.statgrid>.primary-metric,.statgrid>.equity-metric{grid-column:span 2;min-width:0;padding:6px 5px}
+ .metric strong{font-size:clamp(11px,3.4vw,17px);white-space:normal;overflow-wrap:anywhere}
+ .metric small{font-size:8px;line-height:1.2;overflow-wrap:anywhere}
+ .decision-explainer strong{font-size:clamp(10px,3vw,14px);margin:3px 0}
+ .decision-explainer small{-webkit-line-clamp:3}
+ .decision-card{height:clamp(200px,36dvh,270px)}
+}
