@@ -120,3 +120,16 @@
  .card-impact-detail{font-size:7px;line-height:1.18}
  .decision-card{height:clamp(156px,23dvh,200px)}
 }
+
+/* Career-specific strategy tips */
+.path-actions{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+.career-tips-button{display:inline-flex;align-items:center;gap:5px;padding:7px 10px;background:#38304f;color:#e8ddff;border:1px solid #8e78c5;border-radius:7px;font-size:11px;font-weight:800;cursor:pointer}
+.career-tips-button:hover{background:#51406e}
+.career-tips-modal{width:min(640px,94vw);max-height:88dvh;overflow-y:auto}
+.career-tips-list{display:grid;gap:8px;margin:14px 0}
+.career-tip{border:1px solid #394055;background:#202638;border-radius:9px;padding:10px 12px}
+.career-tip-current{border-color:#ad8cf4;background:#302b48}
+.career-tip strong{font-size:13px;color:#f1eaff}
+.career-tip p{margin:5px 0;font-size:12px;line-height:1.4;color:#e1e4ef}
+.career-tip small{font-size:11px;color:#bfc8dc;line-height:1.4;display:block}
+@media(max-width:740px){.path-actions{gap:3px}.career-tips-button{padding:5px 7px;font-size:9px}.career-tips-modal{max-height:86dvh}.career-tip{padding:8px}.career-tip p{font-size:11px}}
