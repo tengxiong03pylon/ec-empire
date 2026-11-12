@@ -7,14 +7,14 @@ export type Game = {id:string;player:string;path:Pathway;turn:number;cash:number
 export type Score = {id:string;name:string;path:string;netWorth:number;cash:number;value:number;debt:number;ownership:number;date:string};
 export const MAX_TURNS=10;
 export const paths:Pathway[]=[
-{id:'startup',name:'Startup Founder',icon:'Rocket',tagline:'Start from zero. Build something new.',description:'Validate an idea, win customers, and build a company.',cash:24000,value:0,debt:0,ownership:1,skill:2,risk:13},
-{id:'acquisition',name:'Business Buyer',icon:'Handshake',tagline:'Buy an existing cash-flowing business.',description:'Use valuation, due diligence and financing to acquire operations.',cash:55000,value:0,debt:0,ownership:1,skill:2,risk:16},
-{id:'franchise',name:'Franchise Owner',icon:'Store',tagline:'Operate a proven system.',description:'Evaluate franchise economics, run locations and expand.',cash:42000,value:0,debt:0,ownership:1,skill:2,risk:12},
-{id:'innovation',name:'Technology Innovator',icon:'Lightbulb',tagline:'Commercialize an invention.',description:'Turn R&D, research and intellectual property into enterprise value.',cash:25000,value:0,debt:0,ownership:1,skill:2,risk:18},
-{id:'corporate',name:'Corporate Entrepreneur',icon:'Building2',tagline:'Build inside a larger organization.',description:'Launch new products and create a path toward a spinout.',cash:38000,value:0,debt:0,ownership:1,skill:3,risk:9},
-{id:'social',name:'Social Entrepreneur',icon:'HeartHandshake',tagline:'Profit and purpose can coexist.',description:'Solve a community problem with a sustainable business model.',cash:22000,value:0,debt:0,ownership:1,skill:3,risk:11},
-{id:'partner',name:'Operating Partner',icon:'Users',tagline:'Join a team and earn your stake.',description:'Contribute expertise and build value through partnerships.',cash:35000,value:0,debt:0,ownership:.7,skill:3,risk:11},
-{id:'investor',name:'Investor',icon:'ChartNoAxesCombined',tagline:'Allocate capital. Manage risk.',description:'Evaluate businesses, capital structure and potential returns.',cash:70000,value:0,debt:0,ownership:1,skill:2,risk:14},
+{id:'startup',name:'Startup Founder',icon:'Rocket',tagline:'Start from zero. Build something new.',description:'Validate an idea, win customers, and build a company.',cash:30000,value:0,debt:0,ownership:1,skill:8,risk:12},
+{id:'acquisition',name:'Business Buyer',icon:'Handshake',tagline:'Buy an existing cash-flowing business.',description:'Use valuation, due diligence and financing to acquire operations.',cash:50000,value:0,debt:0,ownership:1,skill:5,risk:17},
+{id:'franchise',name:'Franchise Owner',icon:'Store',tagline:'Operate a proven system.',description:'Evaluate franchise economics, run locations and expand.',cash:43000,value:0,debt:0,ownership:1,skill:6,risk:10},
+{id:'innovation',name:'Technology Innovator',icon:'Lightbulb',tagline:'Commercialize an invention.',description:'Turn R&D, research and intellectual property into enterprise value.',cash:30000,value:0,debt:0,ownership:1,skill:10,risk:20},
+{id:'corporate',name:'Corporate Entrepreneur',icon:'Building2',tagline:'Build inside a larger organization.',description:'Launch new products and create a path toward a spinout.',cash:38000,value:0,debt:0,ownership:0.8,skill:7,risk:8},
+{id:'social',name:'Social Entrepreneur',icon:'HeartHandshake',tagline:'Profit and purpose can coexist.',description:'Solve a community problem with a sustainable business model.',cash:30000,value:0,debt:0,ownership:1,skill:7,risk:10},
+{id:'partner',name:'Operating Partner',icon:'Users',tagline:'Join a team and earn your stake.',description:'Contribute expertise and build value through partnerships.',cash:40000,value:0,debt:0,ownership:0.8,skill:9,risk:11},
+{id:'investor',name:'Investor',icon:'ChartNoAxesCombined',tagline:'Allocate capital. Manage risk.',description:'Evaluate businesses, capital structure and potential returns.',cash:60000,value:0,debt:0,ownership:1,skill:4,risk:18},
 {id:'unicorn',name:'Unicorn Founder',icon:'Crown',tagline:'Master the craft. Protect your stake.',description:'A venture-backed high-growth founder with maximum entrepreneurial skill, zero starting risk, and significant investor dilution.',cash:38875,value:0,debt:0,ownership:.15,skill:100,risk:0}
 ];
 export const cards:Card[]=[
@@ -56,21 +56,35 @@ function nextInt(g:Game,n:number){const [seed,value]=stepRandom(g.seed);g.seed=s
 function nextUnit(g:Game){const [seed,value]=stepRandom(g.seed);g.seed=seed;return value}
 export function netWorth(g:Pick<Game,'cash'|'value'|'ownership'|'debt'>){return Math.round(g.cash+g.value*g.ownership-g.debt)}
 export function fmt(n:number){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(Math.round(n))}
+// Career-specific economics: visible in card previews and used by the engine.
+export function effectiveCost(g:Game,c:Card){return Math.round(c.cost*(g.path.id==='franchise'&&(c.id==='franchise'||c.id==='expand')?.8:1))}
+export function careerGainMultiplier(g:Game,c:Card){
+switch(g.path.id){
+case 'startup':return ['launch','sales','marketing'].includes(c.id)?1.2:1;
+case 'acquisition':return c.id==='buy'?1.15:1;
+case 'innovation':return c.id==='invent'?1.3:1;
+case 'franchise':return c.id==='invent'?.85:1;
+case 'social':return c.id==='expand'?.85:1;
+case 'partner':return ['optimize','hire','partner'].includes(c.id)?1.25:1;
+case 'investor':return ['buy','risk'].includes(c.id)?1.15:1;
+default:return 1;
+}}
+export function expectedAssetGain(g:Game,c:Card){return Math.round(c.gain*(1+Math.min(2.3,g.skill*.023))*careerGainMultiplier(g,c)*(g.path.id==='unicorn'?3:1))}
 export function draw(g:Game){const deck=cards.filter(c=>!c.paths||c.paths.includes(g.path.id));const pool=[...deck];const picked:string[]=[];while(picked.length<4&&pool.length){picked.push(pool.splice(nextInt(g,pool.length),1)[0].id)}g.hand=picked;
 // Guarantee at least one actually playable decision, even when cash or equity is constrained.
 if(!g.hand.some(id=>canPlay(g,cards.find(c=>c.id===id)!))){g.hand[0]='sidecash'}
 }
 export function newGame(player:string,seed=randomSeed()):Game{const [next,r]=stepRandom(seed);const path=paths[Math.floor(r*paths.length)];const g:Game={id:crypto.randomUUID(),player:player.trim().slice(0,28)||'Entrepreneur',path,turn:1,cash:path.cash,value:path.value,debt:path.debt,ownership:path.ownership,skill:path.skill,risk:path.risk,hand:[],history:[],status:'playing',seed:next,round:0};draw(g);return g}
-export function canPlay(g:Game,c:Card){if(g.status!=='playing'||!g.hand.includes(c.id))return false;if(c.special==='venturedebt')return g.path.id==='unicorn';if(c.special==='raise')return g.ownership>.35&&(g.path.id!=='unicorn'||g.ownership-.15>=.15);if(c.special==='repay')return g.debt>0&&g.cash>0;if(c.special==='sell')return g.value>0&&g.ownership>.1&&(g.path.id!=='unicorn'||g.ownership-.2>=.15);return g.cash>=c.cost}
+export function canPlay(g:Game,c:Card){if(g.status!=='playing'||!g.hand.includes(c.id))return false;if(c.special==='venturedebt')return g.path.id==='unicorn';if(c.special==='raise')return g.ownership>.35&&(g.path.id!=='unicorn'||g.ownership-.15>=.15);if(c.special==='repay')return g.debt>0&&g.cash>0;if(c.special==='sell')return g.value>0&&g.ownership>.1&&(g.path.id!=='unicorn'||g.ownership-.2>=.15);return g.cash>=effectiveCost(g,c)}
 export function playCard(game:Game,cardId:string):{game:Game;result:HistoryItem}{const g:Game=structuredClone(game),c=cards.find(x=>x.id===cardId);if(!c||!canPlay(g,c))throw Error('Card not playable');const before=netWorth(g);let message='';if(c.special==='raise'){g.ownership=Math.max(g.path.id==='unicorn'?.15:.1,g.ownership-.15);g.cash+=30000;message='Raised $30,000; gave up 15 percentage points of ownership.'}
 else if(c.special==='venturedebt'){g.cash+=30000;g.debt+=30000;message='Secured $30,000 venture debt without equity dilution; interest accrues at 5% per turn.'}
 else if(c.special==='repay'){const sum=Math.min(15000,g.debt,g.cash);g.cash-=sum;g.debt-=sum;message=`Repaid ${fmt(sum)} in principal.`}
 else if(c.special==='sell'){const portion=Math.min(.2,g.ownership);const payout=g.value*portion*.9;g.cash+=payout;g.ownership=Math.max(g.path.id==='unicorn'?.15:0,g.ownership-portion);message=`Sold 20 percentage points of business equity at a 10% discount; received ${fmt(payout)}.`}
 else if(c.special==='cash'){const amount=4500+nextInt(g,7500);g.cash+=amount;message=`Collected ${fmt(amount)} in consulting revenue.`}
-else{g.cash-=c.cost;const volatility=(nextUnit(g)*2-1)*c.variance;let appreciation=Math.max(0,c.gain*(1+Math.min(2.3,g.skill*.023))+volatility);if(nextUnit(g)<g.risk/230){appreciation*=.27;message='Execution setback. '}if(g.path.id==='unicorn')appreciation*=3;g.value+=appreciation;g.debt+=c.debt||0;message+=`Business asset value changed by ${fmt(appreciation)}.`}
-g.skill=Math.min(100,g.skill+c.skill);g.risk=g.path.id==='unicorn'?0:Math.max(0,Math.min(100,g.risk+c.risk));
-let eventName='';if(g.turn%2===0){const event=events[nextInt(g,events.length)];g.cash+=event.cash;g.value=Math.max(0,g.value+event.value);g.risk=g.path.id==='unicorn'?0:Math.max(0,Math.min(100,g.risk+event.risk));eventName=`${event.name}: ${event.description} Cash ${fmt(event.cash)}, assets ${fmt(event.value)}.`}
-const interest=Math.round(g.debt*.05);g.cash-=interest;if(interest)message+=` Debt interest: ${fmt(interest)}.`;
+else{g.cash-=effectiveCost(g,c);const volatility=(nextUnit(g)*2-1)*c.variance;let appreciation=Math.max(0,c.gain*(1+Math.min(2.3,g.skill*.023))*careerGainMultiplier(g,c)+volatility);if(nextUnit(g)<g.risk/230){appreciation*=.27;message='Execution setback. '}if(g.path.id==='unicorn')appreciation*=3;g.value+=appreciation;g.debt+=c.debt||0;message+=`Business asset value changed by ${fmt(appreciation)}.`}
+if(g.path.id==='social'&&c.id==='partner'){g.cash+=3000;message+=' Community grant: $3,000.'}g.skill=Math.min(100,g.skill+c.skill);g.risk=g.path.id==='unicorn'?0:Math.max(0,Math.min(100,g.risk+c.risk));
+let eventName='';if(g.turn%2===0){const event=events[nextInt(g,events.length)];const downturn=g.path.id==='investor'&&event.cash<0?1.25:1;g.cash+=Math.round(event.cash*downturn);g.value=Math.max(0,g.value+Math.round(event.value*(event.value<0?downturn:1)));g.risk=g.path.id==='unicorn'?0:Math.max(0,Math.min(100,g.risk+event.risk));eventName=`${event.name}: ${event.description} Cash ${fmt(event.cash)}, assets ${fmt(event.value)}.`}
+if(g.path.id==='corporate'){g.cash+=2000;message+=' Corporate income: $2,000.'}const interest=Math.round(g.debt*.05);g.cash-=interest;if(interest)message+=` Debt interest: ${fmt(interest)}.`;
 if(g.cash<0){const shortfall=-g.cash;g.debt+=shortfall;g.cash=0;g.risk=g.path.id==='unicorn'?0:Math.min(100,g.risk+8);message+=` Emergency borrowing: ${fmt(shortfall)}.`}
 const result:HistoryItem={turn:g.turn,card:c.name,message,delta:netWorth(g)-before,event:eventName||undefined,lesson:c.lesson};g.history.unshift(result);if(g.turn>=MAX_TURNS){g.status='finished';g.hand=[]}else{g.turn++;draw(g)}g.round++;return {game:g,result}}
 export function scoreFromGame(g:Game):Score{return{id:g.id,name:g.player,path:g.path.name,netWorth:netWorth(g),cash:Math.round(g.cash),value:Math.round(g.value),debt:Math.round(g.debt),ownership:g.ownership,date:new Date().toISOString()}}
