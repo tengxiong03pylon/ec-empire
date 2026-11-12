@@ -336,3 +336,53 @@ body:has(.tablet-decision-layout){overflow:hidden}
 .empire-deck-detail>div strong{margin:4px 0}
 .empire-deck-detail>div p{font-size:11px;line-height:1.55}
 }
+
+/* Mobile gameplay: budget vertical space for the decision text and fixed action. */
+@media(max-width:740px){
+body:has(.tablet-decision-layout){overflow:hidden}
+.app:has(.tablet-decision-layout){height:100dvh;min-height:0;overflow:hidden}
+.app:has(.tablet-decision-layout) .topbar{height:40px;position:relative}
+.app:has(.tablet-decision-layout) .barinner{height:40px}
+.app:has(.tablet-decision-layout) .container{height:calc(100dvh - 40px);min-height:0;overflow:hidden;padding:3px 8px 0}
+.app:has(.tablet-decision-layout) .game-layout{height:100%;overflow:hidden}
+.app:has(.tablet-decision-layout) .game-heading{margin:0 0 2px}
+.app:has(.tablet-decision-layout) .game-title{font-size:16px}
+.app:has(.tablet-decision-layout) .career-timeline{margin:1px 0 3px;padding:3px 6px}
+.app:has(.tablet-decision-layout) .career-timeline-label,.app:has(.tablet-decision-layout) .career-end-note{display:none}
+.app:has(.tablet-decision-layout) .career-ticks{margin:0}
+.app:has(.tablet-decision-layout) .career-ticks span{height:11px;font-size:7px}
+.app:has(.tablet-decision-layout) .path-banner{margin:0 0 3px;padding:3px 6px}
+.app:has(.tablet-decision-layout) .path-emblem{height:23px;width:23px;flex-basis:23px;font-size:15px}
+.app:has(.tablet-decision-layout) .path-text h2{font-size:11px}
+.app:has(.tablet-decision-layout) .statgrid{gap:3px}
+.app:has(.tablet-decision-layout) .statgrid>.metric{padding:3px 5px}
+.app:has(.tablet-decision-layout) .metric strong{font-size:clamp(11px,3vw,15px);margin:1px 0}
+.app:has(.tablet-decision-layout) .metric small{display:none}
+.app:has(.tablet-decision-layout) .metric-top span{font-size:7px}
+.app:has(.tablet-decision-layout) .skill-risk-bar{margin:3px 0!important;padding:4px 6px!important}
+.app:has(.tablet-decision-layout) .skill-risk-item small{display:none}
+.app:has(.tablet-decision-layout) .last-card-strip{margin:3px 0;padding:3px 6px}
+.app:has(.tablet-decision-layout) .section-title{margin:3px 0 0}
+.app:has(.tablet-decision-layout) .section-title h2{font-size:15px}
+.app:has(.tablet-decision-layout) .empire-deck{height:clamp(150px,26dvh,208px)}
+.app:has(.tablet-decision-layout) .empire-float-card{height:clamp(145px,25dvh,195px);margin-top:calc(clamp(145px,25dvh,195px)/-2);padding:9px}
+.app:has(.tablet-decision-layout) .empire-float-card .float-symbol{font-size:25px;margin:5px 0}
+.app:has(.tablet-decision-layout) .empire-float-card strong{font-size:15px}
+.app:has(.tablet-decision-layout) .empire-float-card .float-description{font-size:9px;margin-top:5px}
+.app:has(.tablet-decision-layout) .empire-deck-tabs{margin:0 0 3px}
+.app:has(.tablet-decision-layout) .empire-deck-tabs button{padding:5px 2px}
+.app:has(.tablet-decision-layout) .empire-deck-detail{padding:4px 3px 0!important}
+.app:has(.tablet-decision-layout) .empire-deck-detail>div{width:100%;padding:0}
+.app:has(.tablet-decision-layout) .empire-deck-detail small{font-size:9px}
+.app:has(.tablet-decision-layout) .empire-deck-detail strong{font-size:14px;margin:2px 0}
+.app:has(.tablet-decision-layout) .empire-deck-detail p{font-size:10px;line-height:1.35;width:100%;max-width:none}
+.app:has(.tablet-decision-layout) .empire-floating-play{bottom:calc(8px + env(safe-area-inset-bottom));min-height:43px;padding:9px 17px}
+.app:has(.tablet-decision-layout) .hand-advice{display:none}
+}
+@media(max-width:740px) and (max-height:720px){
+.app:has(.tablet-decision-layout) .empire-deck{height:140px}
+.app:has(.tablet-decision-layout) .empire-float-card{height:135px;margin-top:-67.5px}
+.app:has(.tablet-decision-layout) .empire-float-card .float-description{display:none}
+.app:has(.tablet-decision-layout) .skill-risk-item small{display:none}
+.app:has(.tablet-decision-layout) .career-timeline{display:none}
+}
