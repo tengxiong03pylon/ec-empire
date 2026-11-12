@@ -75,3 +75,24 @@
 .career-rank-scroll:focus-visible{outline:2px solid #a98bff;outline-offset:-2px}
 .career-rank-scroll .leader-row{height:78px;min-height:78px;box-sizing:border-box}
 @media(max-width:740px){.career-rank-scroll{max-height:350px}.career-rank-scroll .leader-row{height:70px;min-height:70px}}
+
+/* Decision transparency: projected effects on cards, actual deltas after a play */
+.last-card-strip{display:flex;flex-direction:column;align-items:stretch;gap:5px}
+.last-card-heading{display:flex;align-items:center;gap:9px;min-width:0;flex-wrap:wrap}
+.last-card-heading strong{flex:1;min-width:80px}
+.last-card-heading b{font-size:11px;white-space:nowrap}
+.impact-chips{display:flex;flex-wrap:wrap;gap:4px}
+.impact-chip{background:#282d40;border:1px solid #3e445a;border-radius:5px;padding:3px 6px;font-size:10px;color:#d0d5e3}
+.impact-chip b{font-weight:800}
+.impact-event{font-size:10px;color:#c8bedf}
+.card-impact{display:flex;flex-direction:column;gap:2px;margin-top:auto;padding:4px 0;color:#b8f0d0;font-size:9px;font-weight:700;line-height:1.2}
+.card-impact span:last-child:not(:first-child){color:#f0c5a4}
+@media(max-width:740px){
+ .last-card-strip{padding:5px 7px;min-height:0}
+ .last-card-heading{gap:5px}.last-card-heading b{font-size:9px}
+ .impact-chip{font-size:8px;padding:2px 4px}
+ .card-impact{font-size:7px;line-height:1.12;gap:1px;padding:2px 0}
+ .decision-card{height:clamp(145px,22dvh,190px);display:flex;flex-direction:column}
+ .decision-card p{margin-bottom:2px}
+ .card-bottom{margin-top:2px}
+}
