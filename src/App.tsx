@@ -1,4 +1,4 @@
-import {useEffect,useMemo,useRef,useState} from 'react';
+import {useEffect,useMemo,useRef,useState,type TouchEvent} from 'react';
 import {ArrowRight,ArrowLeft,Trophy,Wallet,Landmark,ChartNoAxesCombined,RotateCcw,Flame,BookOpen,History,Users,Share2,ShieldCheck,Shuffle,Star,Medal,Play,CheckCircle2,LockKeyhole,Info,ExternalLink,Crown} from 'lucide-react';
 import {cards,canPlay,draw,effectiveCost,equityFunding,expectedAssetGain,fmt,MAX_TURNS,netWorth,newGame,paths,playCard,scoreFromGame,type Game,type HistoryItem,type PathId,type Score} from './game';
 import {createClient} from '@supabase/supabase-js';
@@ -32,8 +32,8 @@ const [latest,setLatest]=useState<HistoryItem|null>(null);const [lastChanges,set
 const [focusedCard,setFocusedCard]=useState<number|null>(0);
 const deckTouchStart=useRef<{x:number;y:number}|null>(null);
 const swipeDeck=(direction:number)=>setFocusedCard(current=>Math.max(0,Math.min(3,(current??0)+direction)));
-const onDeckTouchStart=(e:React.TouchEvent<HTMLDivElement>)=>{deckTouchStart.current={x:e.touches[0].clientX,y:e.touches[0].clientY}};
-const onDeckTouchEnd=(e:React.TouchEvent<HTMLDivElement>)=>{const start=deckTouchStart.current;deckTouchStart.current=null;if(!start)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.2){e.preventDefault();swipeDeck(dx<0?1:-1)}};
+const onDeckTouchStart=(e:TouchEvent<HTMLDivElement>)=>{deckTouchStart.current={x:e.touches[0].clientX,y:e.touches[0].clientY}};
+const onDeckTouchEnd=(e:TouchEvent<HTMLDivElement>)=>{const start=deckTouchStart.current;deckTouchStart.current=null;if(!start)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.2){e.preventDefault();swipeDeck(dx<0?1:-1)}};
 const [saving,setSaving]=useState(false);const [publicScores,setPublicScores]=useState<Score[]>([]);const [remoteError,setRemoteError]=useState('');
 const [showRules,setShowRules]=useState(false);const [showCareerTips,setShowCareerTips]=useState(false);
 useEffect(()=>{if(game)localStorage.setItem(KEY,JSON.stringify(game));else localStorage.removeItem(KEY)},[game]);
