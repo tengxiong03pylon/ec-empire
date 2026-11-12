@@ -1,4 +1,4 @@
-export type PathId = 'startup'|'acquisition'|'franchise'|'innovation'|'corporate'|'social'|'partner'|'investor';
+export type PathId = 'startup'|'acquisition'|'franchise'|'innovation'|'corporate'|'social'|'partner'|'investor'|'unicorn';
 export type Pathway = {id:PathId;name:string;icon:string;tagline:string;description:string;cash:number;value:number;debt:number;ownership:number;skill:number;risk:number};
 export type Card = {id:string;name:string;category:string;description:string;lesson:string;cost:number;skill:number;risk:number;gain:number;variance:number;paths?:PathId[];debt?:number;special?:'raise'|'repay'|'sell'|'cash'|'pivot'};
 export type Event = {name:string;description:string;cash:number;value:number;risk:number};
@@ -14,7 +14,8 @@ export const paths:Pathway[]=[
 {id:'corporate',name:'Corporate Entrepreneur',icon:'Building2',tagline:'Build inside a larger organization.',description:'Launch new products and create a path toward a spinout.',cash:38000,value:0,debt:0,ownership:1,skill:3,risk:9},
 {id:'social',name:'Social Entrepreneur',icon:'HeartHandshake',tagline:'Profit and purpose can coexist.',description:'Solve a community problem with a sustainable business model.',cash:22000,value:0,debt:0,ownership:1,skill:3,risk:11},
 {id:'partner',name:'Operating Partner',icon:'Users',tagline:'Join a team and earn your stake.',description:'Contribute expertise and build value through partnerships.',cash:35000,value:0,debt:0,ownership:.7,skill:3,risk:11},
-{id:'investor',name:'Investor',icon:'ChartNoAxesCombined',tagline:'Allocate capital. Manage risk.',description:'Evaluate businesses, capital structure and potential returns.',cash:70000,value:0,debt:0,ownership:1,skill:2,risk:14}
+{id:'investor',name:'Investor',icon:'ChartNoAxesCombined',tagline:'Allocate capital. Manage risk.',description:'Evaluate businesses, capital structure and potential returns.',cash:70000,value:0,debt:0,ownership:1,skill:2,risk:14},
+{id:'unicorn',name:'Unicorn Founder',icon:'Crown',tagline:'Master the craft. Protect your stake.',description:'A venture-backed high-growth founder with maximum entrepreneurial skill, zero starting risk, and significant investor dilution.',cash:38875,value:0,debt:0,ownership:.15,skill:20,risk:0}
 ];
 export const cards:Card[]=[
 {id:'discover',name:'Interview Customers',category:'RESEARCH',description:'Learn what customers really want before spending heavily.',lesson:'Customer discovery reduces uncertainty; a clever product without customers has little value.',cost:1200,skill:3,risk:-7,gain:2200,variance:1100},
