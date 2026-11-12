@@ -69,3 +69,9 @@
  .section-title{margin:3px 0 5px}
 }
 @media(max-width:380px){.decision-card{height:clamp(116px,18dvh,155px)}.card-symbol{font-size:15px}}
+
+/* Keep the career ranking panel to five rows, scrolling only the remaining ranks. */
+.career-rank-scroll{max-height:390px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#7c69b2 #171b2b}
+.career-rank-scroll:focus-visible{outline:2px solid #a98bff;outline-offset:-2px}
+.career-rank-scroll .leader-row{height:78px;min-height:78px;box-sizing:border-box}
+@media(max-width:740px){.career-rank-scroll{max-height:350px}.career-rank-scroll .leader-row{height:70px;min-height:70px}}
