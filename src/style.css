@@ -705,3 +705,12 @@ body:has(.intro){position:fixed!important;inset:0!important;width:100%!important
 .funding-options button:disabled{opacity:.38;cursor:not-allowed}
 .funding-options strong{color:#ffe2a6;font-size:15px}.funding-options span{font-size:12px;line-height:1.5}.funding-options small{font-size:11px;color:#9bd8b5}
 @media(max-width:600px){.funding-options{grid-template-columns:1fr}.funding-options button{padding:11px}}
+
+/* Paid card refresh: compact single-screen controls for tablet and mobile. */
+.refresh-action{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:5px 0 3px;flex-wrap:wrap}
+.refresh-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #8c77c9;border-radius:8px;background:#302847;color:#f3eaff;font-weight:900;font-size:10px;padding:7px 11px;cursor:pointer}
+.refresh-button b{color:#ffd38a}.refresh-button:disabled{opacity:.42;cursor:not-allowed}
+.refresh-action>span{font-size:9px;color:#a8b1c6}
+.empire-deck-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:thin}
+.empire-deck-tabs button{flex:1 0 auto}
+@media(max-width:740px){.refresh-action{margin:2px 0;gap:3px}.refresh-button{padding:5px 7px;font-size:9px}.refresh-action>span{font-size:8px}}
