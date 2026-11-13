@@ -644,3 +644,35 @@ body:has(.intro){position:fixed!important;inset:0!important;width:100%!important
 @media(min-width:1100px){.ece-game-layout .ece-world{max-width:100%}.ece-game-layout .ece-island{height:clamp(95px,19vh,175px)}}
 @media(max-width:740px){.ece-world{padding:8px 7px}.ece-island{height:clamp(110px,21vh,185px)}.ece-world-logo{font-size:16px}.ece-world-year{font-size:11px;padding:6px 9px}.ece-wealth{padding:7px 9px}.ece-resource{padding:6px 2px}.ece-resource>span{font-size:17px}.ece-resource small{font-size:8px}.ece-resource strong{font-size:clamp(10px,3vw,15px)}.ece-mini-stats{gap:4px}.ece-mini-stats span{font-size:9px;padding:4px 6px}}
 @media(max-width:390px){.ece-resource strong{font-size:10px}.ece-building-center{font-size:30px}.ece-world{margin-bottom:5px}.ece-island{height:108px}}
+
+
+/* Mobile usability repair: keep whole decision card visible and detail above floating actions.
+   Deliberately allow vertical scrolling rather than clipping game content on short phones. */
+@media(max-width:740px){
+ body:has(.ece-game-layout){overflow:auto!important}
+ .app:has(.ece-game-layout){height:auto!important;min-height:100dvh!important;overflow:visible!important}
+ .app:has(.ece-game-layout) .container{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+ .app:has(.ece-game-layout) .game-layout,.app:has(.ece-game-layout) .main-column{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;display:block!important}
+ .app:has(.ece-game-layout) .tablet-decision-layout,.app:has(.ece-game-layout) .tablet-decision-main{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;display:block!important}
+ .ece-game-layout .ece-island{height:90px!important}
+ .ece-game-layout .ece-building{font-size:22px}
+ .ece-game-layout .ece-building-center{font-size:29px}
+ .ece-game-layout .ece-wealth{padding:5px 9px}
+ .ece-game-layout .ece-wealth strong{font-size:26px}
+ .ece-game-layout .ece-mini-stats{margin-top:4px}
+ .ece-game-layout .last-card-strip{padding:6px 9px!important;margin:5px 0!important}
+ .ece-game-layout .section-title{margin:4px 0!important}
+ .ece-game-layout .section-title h2{font-size:17px!important}
+ .ece-game-layout .empire-deck{display:block!important;position:relative!important;flex:none!important;height:240px!important;min-height:240px!important;max-height:none!important;overflow:visible!important;margin:6px auto 3px!important}
+ .ece-game-layout .empire-float-card{height:215px!important;min-height:215px!important;max-height:215px!important;margin-top:-107.5px!important;padding:10px 11px 25px!important}
+ .ece-game-layout .empire-float-card .float-symbol{font-size:24px!important;margin:4px 0!important}
+ .ece-game-layout .empire-float-card strong{font-size:16px!important;line-height:1.18!important}
+ .ece-game-layout .empire-float-card .float-description{display:block!important;font-size:10px!important;line-height:1.3!important;margin-top:5px!important;max-height:52px;overflow:hidden}
+ .ece-game-layout .empire-float-card .float-economics{bottom:7px!important}
+ .ece-game-layout .equity-action-bar{position:relative;z-index:11;margin:5px auto!important}
+ .ece-game-layout .empire-deck-tabs{margin:5px 0!important}
+ .ece-game-layout .empire-deck-detail{display:block!important;height:auto!important;min-height:110px!important;max-height:none!important;overflow:visible!important;padding:8px 5px 100px!important;margin-top:4px!important}
+ .ece-game-layout .empire-deck-detail>div{height:auto!important;max-height:none!important;overflow:visible!important}
+ .ece-game-layout .empire-deck-detail p{white-space:normal!important;overflow:visible!important;line-height:1.45!important;font-size:11px!important}
+ .ece-game-layout .empire-floating-play,.ece-game-layout .empire-floating-end-year{z-index:105}
+}
