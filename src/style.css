@@ -614,3 +614,11 @@ body:has(.intro){position:fixed!important;inset:0!important;width:100%!important
 @media(min-width:1367px){.empire-floating-end-year{left:auto;right:168px;bottom:18px}}
 @media(max-width:740px){.empire-floating-end-year{left:calc(50% + 74px);bottom:calc(8px + env(safe-area-inset-bottom));min-height:43px;padding:9px 10px;font-size:10px;gap:4px}}
 @media(max-width:390px){.empire-floating-end-year{left:calc(50% + 70px);padding:8px 7px;font-size:9px}.empire-floating-end-year svg{display:none}}
+
+/* Persistent equity controls, independent of the four-card hand. */
+.equity-action-bar{display:flex;align-items:center;justify-content:center;gap:8px;margin:3px auto 5px;max-width:420px;width:100%}
+.equity-action-bar button{display:flex;align-items:center;justify-content:center;gap:8px;flex:1;min-width:0;padding:7px 9px;border-radius:9px;border:1px solid #46516b;background:#1b2638;color:#f1f5fa;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}
+.equity-action-bar button:disabled{opacity:.4;cursor:not-allowed}
+.equity-action-bar button:not(:disabled):hover{border-color:#b5a0fa;background:#29344b}
+.equity-action-bar b{font-size:11px}
+@media(max-width:740px){.equity-action-bar{gap:5px;margin:2px auto 3px}.equity-action-bar button{font-size:9px;padding:5px 6px;gap:4px}.equity-action-bar b{font-size:9px}}
