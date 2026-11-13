@@ -607,3 +607,10 @@ body:has(.intro){position:fixed!important;inset:0!important;width:100%!important
 .nav .end-year-nav:hover,.nav .end-year-nav:focus-visible{background:#ffab5e;color:#151515}
 @media(max-width:640px){.nav .end-year-nav{font-size:10px;padding:8px 7px;gap:3px}.nav .end-year-nav svg{width:13px;height:13px}.nav{gap:2px}}
 @media(max-width:390px){.nav .end-year-nav{font-size:9px;padding:7px 5px}.nav .end-year-nav svg{display:none}}
+
+/* End Year sits in the same fixed floating action bar as Play Card. */
+.empire-floating-end-year{position:fixed;z-index:101;bottom:calc(12px + env(safe-area-inset-bottom));left:calc(50% + 84px);min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 15px;border:1px solid #f6a65c;border-radius:12px;background:#ea8a35;color:#16191f;font-weight:900;font-size:12px;letter-spacing:.3px;cursor:pointer;box-shadow:0 10px 26px #0009}
+.empire-floating-end-year:hover,.empire-floating-end-year:focus-visible{background:#ffab5e}
+@media(min-width:1367px){.empire-floating-end-year{left:auto;right:168px;bottom:18px}}
+@media(max-width:740px){.empire-floating-end-year{left:calc(50% + 74px);bottom:calc(8px + env(safe-area-inset-bottom));min-height:43px;padding:9px 10px;font-size:10px;gap:4px}}
+@media(max-width:390px){.empire-floating-end-year{left:calc(50% + 70px);padding:8px 7px;font-size:9px}.empire-floating-end-year svg{display:none}}
