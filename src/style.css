@@ -696,3 +696,12 @@ body:has(.intro){position:fixed!important;inset:0!important;width:100%!important
 .ece-year-segment.milestone{border-color:#b596e9}.ece-year-segment.crisis{border-color:#ff777e}.ece-year-segment b{position:absolute;right:1px;top:-6px;font-size:10px;color:#d9b3ff;text-shadow:0 1px 2px #000}.ece-year-segment.crisis b{color:#ff9191}
 .ece-year-legends{display:flex;justify-content:space-between;gap:6px;margin-top:7px;color:#cdb7ef;font-size:9px;font-weight:700}.ece-year-legends b{color:#e7eaf5}.ece-year-legends .ece-crisis-label{color:#ff9a9e}
 @media(max-width:740px){.ece-year-track{padding:6px 7px;margin-bottom:7px}.ece-year-segment{height:21px;font-size:9px}.ece-year-legends{font-size:8px}.ece-year-track-head{margin-bottom:6px;font-size:9px}}
+
+
+/* Five-card capital allocation pilot */
+.funding-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0}
+.funding-options button{border:1px solid #9b7a48;border-radius:12px;background:#242b40;color:#fff;text-align:left;padding:14px 11px;display:flex;flex-direction:column;gap:8px;cursor:pointer}
+.funding-options button:hover:not(:disabled),.funding-options button:focus-visible{border-color:#ffe0a0;background:#343b56}
+.funding-options button:disabled{opacity:.38;cursor:not-allowed}
+.funding-options strong{color:#ffe2a6;font-size:15px}.funding-options span{font-size:12px;line-height:1.5}.funding-options small{font-size:11px;color:#9bd8b5}
+@media(max-width:600px){.funding-options{grid-template-columns:1fr}.funding-options button{padding:11px}}
