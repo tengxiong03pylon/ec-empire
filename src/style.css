@@ -622,3 +622,10 @@ body:has(.intro){position:fixed!important;inset:0!important;width:100%!important
 .equity-action-bar button:not(:disabled):hover{border-color:#b5a0fa;background:#29344b}
 .equity-action-bar b{font-size:11px}
 @media(max-width:740px){.equity-action-bar{gap:5px;margin:2px auto 3px}.equity-action-bar button{font-size:9px;padding:5px 6px;gap:4px}.equity-action-bar b{font-size:9px}}
+
+/* Numeric-only economics pinned to opposite bottom corners of every decision card. */
+.empire-float-card{position:absolute}
+.empire-float-card .float-economics{position:absolute;bottom:9px;left:8px;right:8px;display:flex;justify-content:space-between;align-items:flex-end;gap:4px;pointer-events:none;line-height:1.1;font-size:12px;font-weight:900;font-variant-numeric:tabular-nums}
+.empire-float-card .float-cost{min-width:0;text-align:left;white-space:nowrap}
+.empire-float-card .float-return{min-width:0;text-align:right;white-space:nowrap}
+@media(max-width:740px){.empire-float-card .float-economics{bottom:6px;left:6px;right:6px;font-size:10px;gap:2px}}
