@@ -75,6 +75,11 @@ return <div className="app">
 <div className="ece-island-caption">{game.path.name} · EMPIRE HQ</div>
 </div>
 <div className="ece-wealth"><small>♛ YOUR EMPIRE VALUE</small><strong>{cashFormat(currentWorth)}</strong><span>Next milestone · $1,000,000</span><div className="ece-wealth-track"><i style={{width:`${Math.min(100,Math.max(0,currentWorth)/1000000*100)}%`}}/></div></div>
+<div className="ece-year-track" aria-label={`Year ${game.turn} of 10; Life Cards after years 3 and 7; turmoil in year 5`}>
+<div className="ece-year-track-head"><span>◷ EMPIRE JOURNEY</span><strong>YEAR {game.turn} <small>/ 10</small></strong></div>
+<div className="ece-year-segments">{Array.from({length:10},(_,i)=>{const y=i+1;const milestone=y===3||y===5||y===7;const complete=game.turn>y||(y===3&&(game.lifeCards||[]).some(id=>lifeCards.find(c=>c.id===id)?.milestone===3))||(y===5&&!!game.turmoilResolved)||(y===7&&(game.lifeCards||[]).some(id=>lifeCards.find(c=>c.id===id)?.milestone===7));return <div key={y} className={`ece-year-segment ${complete?'done':''} ${game.turn===y?'current':''} ${milestone?'milestone':''} ${y===5?'crisis':''}`} title={y===3?'Life Card milestone':y===5?'Year 5 turmoil':y===7?'Life Card milestone':`Year ${y}`}><span>{y}</span>{milestone&&<b>{y===5?'⚠':'✦'}</b>}</div>})}</div>
+<div className="ece-year-legends"><span>✦ <b>Y3</b> Life Card</span><span className="ece-crisis-label">⚠ <b>Y5</b> Turmoil</span><span>✦ <b>Y7</b> Life Card</span></div>
+</div>
 <div className="ece-resources">
 <div className="ece-resource cash"><span>💵</span><small>CASH</small><strong>{fmt(game.cash)}</strong></div>
 <div className="ece-resource assets"><span>🏢</span><small>ASSETS</small><strong>{fmt(game.value)}</strong></div>
