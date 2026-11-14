@@ -776,3 +776,27 @@ body:has(.intro){position:fixed!important;inset:0!important;width:100%!important
   .ece-game-layout .empire-float-card strong { font-size:13px!important; }
   .ece-game-layout .empire-float-card .float-description { font-size:9px!important; }
 }
+
+/* Mobile card fan: preserve overlapping/swipeable cards within the deck frame. */
+@media (max-width:740px) {
+  .ece-game-layout .empire-deck {
+    --ece-card-step:clamp(25px,7.5vw,36px);
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    isolation:isolate;
+    padding:0!important;
+    touch-action:pan-y;
+  }
+  .ece-game-layout .empire-float-card {
+    width:min(180px,58%)!important;
+    max-width:180px!important;
+    box-sizing:border-box!important;
+    transform-origin:center center;
+    backface-visibility:hidden;
+  }
+  .ece-game-layout .empire-float-card.is-focused { z-index:10; }
+  .ece-game-layout .tablet-decision-layout,
+  .ece-game-layout .tablet-decision-main { min-width:0; max-width:100%; }
+}
